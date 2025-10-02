@@ -1,4 +1,4 @@
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatList, MatListItem } from '@angular/material/list';
@@ -15,7 +15,7 @@ import { Services } from '../Services/services';
 export class Subjects {
   studentsData: any;
   topper: any = {
-    name: '',
+    studentName: '',
     marks: Number.MIN_SAFE_INTEGER
   }
   route = inject(ActivatedRoute);
@@ -32,7 +32,9 @@ export class Subjects {
   updateTopper() {
     for (let i = 0; i < this.studentsData.length; i++) {
       if (this.topper.marks < this.studentsData[i].marks) {
-        this.topper.marks = this.studentsData[i].marks;
+        debugger
+        console.log(this.studentsData[i]);
+        this.topper = this.studentsData[i];
       }
     }
   }
