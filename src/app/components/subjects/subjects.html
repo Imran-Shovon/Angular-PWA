@@ -1,0 +1,18 @@
+<button class="back-button" routerLink="">
+    <mat-icon>arrow_back</mat-icon>Back
+</button>
+
+<div class="subjects-container">
+    <strong class="topper-name">{{topper.name}}</strong>
+    obtained 
+    <strong class="topper-marks">{{topper.marks}}</strong> 
+    <img src="assets/Mathematics-rafiki.png" alt="" class="subjects-img">
+    <hr>
+    <mat-list role="list">
+        @for(detail of studentsData; track detail){
+            <mat-list-item class="students-card">
+                {{ detail.name }} - {{ detail.marks }}
+            </mat-list-item>
+        }
+    </mat-list>
+</div>
