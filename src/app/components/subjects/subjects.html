@@ -3,13 +3,30 @@
         arrow_back
     </mat-icon> Back
 </button>
-<div class="subjects-container">
-    <strong class="topper-name"> {{ topper.studentName }} </strong> 
-    obtained 
-    <strong class="topper-name">{{topper.marks}}</strong>
+<ng-container *ngIf="studentsData$ | async as studentsData; else loading">
+
+  <div class="subjects-container" *ngIf="studentsData.length">
+
+    <!-- Topper Section -->
+    <ng-container *ngIf="topper$ | async as topper">
+      <strong class="topper-name">{{ topper.studentName }}</strong>
+      obtained
+      <strong class="topper-name">{{ topper.marks }}</strong>
+    </ng-container>
+
     <img class="subjects-img" src="./assets/Mathematics-rafiki.png"/>
     <hr/>
+
+    <!-- Students List -->
     <mat-list role="list">
-        <mat-list-item class="students-card" *ngFor="let detail of studentsData; index as i;">{{detail?.studentName}}-{{detail?.marks}}</mat-list-item>
+      <mat-list-item class="students-card" *ngFor="let detail of studentsData">
+        {{ detail.studentName }} - {{ detail.marks }}
+      </mat-list-item>
     </mat-list>
-</div>
+  </div>
+</ng-container>
+
+<!-- Loading Template -->
+<ng-template #loading>
+  <p>Loading students data...</p>
+</ng-template>
